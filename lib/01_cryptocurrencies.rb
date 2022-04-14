@@ -6,24 +6,51 @@ liste_prix = ["6558.07", "468.95", "0.487526", "762.84", "8.86", "85.26", "0.151
 
 # Créer un Hash
 liste_prix_f = liste_prix.map{|v| v.to_f}       #transformer string en float décimaux
-crypto = liste_monnaie.zip(liste_prix_f).to_h   #hash= arr1.zip(arr2)
+@crypto = liste_monnaie.zip(liste_prix_f).to_h   #hash= arr1.zip(arr2)
 
+# Transformer string en smbol :
+# @crypto.transform_keys(&:to_sym)
+# @crypto = @crypto.inject({}){|memo,(k,v)| memo[k.to_sym] = v; memo}
 
-##############  EXERCICES  #################
+############################  EXERCICES  ################################
+
+def question_1 ()
 # La ou les crypto qui ont la plus grosse valeur.
 # puts crypto.max_by{|k,v| v}  #hash.max_by{|k,v| v}    
                              #Attention : ne renvoit que la plus grande value-paire du hash (même si égalité)
-puts "#{crypto.select {|k,v| v == crypto.values.max}.keys} : la/les cryptos avec la plus grande valeure (#{crypto.values.max})"  #hash.values   array.max
+puts "#{@crypto.select {|k,v| v == @crypto.values.max}.keys} : la/les cryptos avec la plus grande valeure (#{@crypto.values.max})"  #hash.values   array.max
 gets
+end
+
+def question_2
 # La ou les crpto qui ont la plus petite valeur.
-puts "#{crypto.select {|k,v| v == crypto.values.min}.keys} : la/les cryptos avec la plus petite valeure (#{crypto.values.min})"  #hash.values   array.min
+puts "#{@crypto.select {|k,v| v == @crypto.values.min}.keys} : la/les cryptos avec la plus petite valeure (#{@crypto.values.min})"  #hash.values   array.min
 gets
+end
+
+def question_3
 # Les devises dont le cours est inférieur à 6000
-dev_inf_6000 = crypto.select {|k,v| v < 6000}  #hash.keys
-p dev_inf_6000.keys 
+@dev_inf_6000 = @crypto.select {|k,v| v < 6000}  #hash.keys
+p @dev_inf_6000.keys 
 puts "La liste des devises dont le cours est inférieur à 6000 !"
 gets
+end
+
+def question_4
 # La devise la plus chère parmi celles dont le cours est inférieur à 6000.
-devise = dev_inf_6000.values.max
+devise = @dev_inf_6000.values.max
 puts "La devise la plus chère parmi celles dont le cours est inférieur à 6000 : #{devise}"
-puts "(La paire crypto/devise associée : #{dev_inf_6000.max_by{|k,v| v}}"  
+puts "(La paire crypto/devise associée : #{@dev_inf_6000.max_by{|k,v| v}}"
+end
+
+
+
+def perform ()
+    question_1
+    question_2
+    question_3
+    question_4
+end
+
+
+perform
