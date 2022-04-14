@@ -3,28 +3,113 @@ list = ["@jcunniet","@PaulLampon","@Aziliz31","@ssoumier","@marionsouzeau","@gae
 
 
 ##############  EXERCICES  ############
+
+def cons_1()
 # Combien y a-t-il de handle dans cette array ?
-puts "Il y a #{list.length} Twitter handles dans la liste !"
+puts "Il y a #{list.length} handles Twitter dans la liste !"
 gets
+end
+
+def cons_2()
 # Trie la liste de handle par taille des handle (les plus petits en premiers, les plus grands après)
-puts list.sort_by!{|x| x.length}
+p list.sort_by!{|x| x.length}
 puts "Voici la liste triée par nb de caractères !"
 gets
+end
+
+def cons_3 ()
 # Quel est le handle le plus court de cette liste ?
-puts "Le handle le plus court est : #{list.sort_by!{|x| x.length}[0]}"
+puts "Le handle le plus court est : #{list.sort_by!{|x| x.length}[0]}"  #min_by
 gets
+end
+
+def cons_4()
 # Combien y-a-t'il de handle contenant 5 caractères (le @ ne compte pas pour un caractère)
-puts "Il y a #{list.count{|x| x.length == 5}} Twitter handles de 5 caractères dans la liste !"
+puts "Il y a #{list.count{|x| x.length == 6}} Twitter handles de 5 caractères dans la liste !"
 gets
+end
+
+def cons_5
 # Combien commencent par une majuscule (première lettre juste après le @) ?
+    # puts "Il y a #{list.count{|x| x[1].upcase == x[1] && x[1].to_i!=x[1]}} Twitter handles commençant par une majuscule ou un caractère spécial dans la liste !" 
 puts "Il y a #{list.count{|x| x[1].match?(/[A-Z]/)}} Twitter handles commençant par une majuscule dans la liste !" 
-puts "Il y a #{list.count{|x| x[1].upcase == x[1] && x[1].to_i!=x[1]}} Twitter handles commençant par une majuscule ou un caractère spécial dans la liste !" 
-puts "Il y a #{list.count{|x| x[1].match?("_")}} Twitter handles commençant par un '_'' dans la liste !"
+# puts "Il y a #{list.count{|x| x[1].match?("_")}} Twitter handles commençant par un '_'' dans la liste !"
 gets
+end
+
+def cons_6()
 # Trie la liste de handle par ordre alphabétique.
-puts list.sort!
+p list.sort_by! {|x| x.slice(2).downcase}
 puts "Voici la liste par ordre alphabétique !"
 gets
+end
+
+def cons_7()
 # Quelle est la position dans l'array de la personne @epenser ?
 puts "L'indice de '@epenser' dans la liste est : #{list.rindex("@epenser")}"
+end
+
+def cons_8 ()
 #Sors-moi une répartition des handle par taille de ces derniers (nombre de handle avec 1 caractère, nombre de handle avec 2 caractères, nombre de handle avec 3 caractères, etc)
+#on veut un tableau de deux colonnes 
+# |  nb caracte   |    nb elements |
+#pour chaque item, on compte le nombre de caratère, on incrémente la valeur v de tab | x , v |
+#map
+#collect
+list_lengths = list.collect {|x| x.length - 1 } #on retire 1 pour le @
+max_length =  list.collect {|x| x.length - 1 }.max  #ça fait 32
+nb = 0 
+max_length.times do |i|
+    nb = list_lengths.count{|x| x == i+1 }
+    if nb != 0
+        puts "Il y a #{nb} handles de #{i+1} caractères"
+    end
+end
+
+end
+
+
+########################################  IDEE  MENU  ##############################################
+
+
+#on affiche les infos avec numeros ( entre pour defiler dans l'ordre, ou numer pour acceder directement ou ctrl +c pour quitter)
+#input : numero ou entree, sinon rien ne se passe (!!!chaud)
+#fonction par consigne
+
+def afficher_menu()
+
+end
+
+
+
+# def perform()
+#     #afficher_menu
+
+#     case input
+#     when 1
+#         cons_1
+#     when 2
+#         cons_2
+#     else
+        
+#     end
+# end
+
+
+
+
+
+#################  PERFORM ########################
+
+def perform()
+    cons_1
+    cons_2
+    cons_3
+    cons_4
+    cons_5
+    cons_6
+    cons_7
+    cons_8
+end
+
+perform
